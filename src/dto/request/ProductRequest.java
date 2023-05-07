@@ -6,9 +6,10 @@ import entity.ProductType;
 public class ProductRequest {
     private int id;
     private String productName;
-    private ProductType productType;
+    private int productTypeId;
     private int productFee;
-    private ProductFeatures productFeatures;
+    private int productFeaturesId;
+
 
     public int getId() {
         return id;
@@ -26,12 +27,12 @@ public class ProductRequest {
         this.productName = productName;
     }
 
-    public ProductType getProductType() {
-        return productType;
+    public int getProductTypeId() {
+        return productTypeId;
     }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
+    public void setProductTypeId(int productTypeId) {
+        this.productTypeId = productTypeId;
     }
 
     public int getProductFee() {
@@ -42,11 +43,12 @@ public class ProductRequest {
         this.productFee = productFee;
     }
 
-    public ProductFeatures getProductFeatures() {
-        return productFeatures;
+    public int getProductFeaturesId() {
+        return productFeaturesId;
     }
 
-    public void setProductFeatures(ProductFeatures productFeatures) {
-        this.productFeatures = productFeatures;
+    public void setProductFeaturesId(int productFeaturesId) {
+        this.productFeaturesId = productFeaturesId;
     }
 }
+

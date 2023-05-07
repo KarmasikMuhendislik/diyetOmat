@@ -1,15 +1,21 @@
 package dto.response;
 
-import entity.ProductFeatures;
-import entity.ProductType;
-
 public class ProductResponse {
     private int id;
     private String productName;
-    private ProductType productType;
+    private int productType;
     private int productFee;
-    private ProductFeatures productFeatures;
+    private int productFeatures;
 
+    public ProductResponse(){
+
+    }
+    public ProductResponse(String productName, int productType, int productFee, int productFeatures) {
+        this.setProductName(productName);
+        this.setProductType(productType);
+        this.setProductFee(productFee);
+        this.setProductFeatures(productFeatures);
+    }
 
     public int getId() {
         return id;
@@ -27,11 +33,11 @@ public class ProductResponse {
         this.productName = productName;
     }
 
-    public ProductType getProductType() {
+    public int getProductType() {
         return productType;
     }
 
-    public void setProductType(ProductType productType) {
+    public void setProductType(int productType) {
         this.productType = productType;
     }
 
@@ -43,11 +49,11 @@ public class ProductResponse {
         this.productFee = productFee;
     }
 
-    public ProductFeatures getProductFeatures() {
+    public int getProductFeatures() {
         return productFeatures;
     }
 
-    public void setProductFeatures(ProductFeatures productFeatures) {
+    public void setProductFeatures(int productFeatures) {
         this.productFeatures = productFeatures;
     }
 }

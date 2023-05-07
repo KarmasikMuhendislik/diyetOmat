@@ -7,6 +7,15 @@ public class ProductFeatures {
     private String productProtein;
     private String productOil;
 
+    public ProductFeatures(String productEnergy, String productOil, String productCarbohydrate, String productProtein) {
+        this.productEnergy = productEnergy;
+        this.productOil = productOil;
+        this.productCarbohydrate = productCarbohydrate;
+        this.productProtein = productProtein;
+    }
+    public ProductFeatures(){
+
+    }
     public int getId() {
         return id;
     }

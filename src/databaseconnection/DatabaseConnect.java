@@ -7,12 +7,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnect {
-
     private static Connection conn = null;
-    private static final String url ="jdbc:postgresql://localhost:5432/diyetOmat";
+    private static final String url ="jdbc:postgresql://localhost:5432/otomat";
     private static final String user="postgres";
     private static final String password="12345";
-
     public static Connection connect(){
         Connection connection = null;
         try{
@@ -22,19 +20,14 @@ public class DatabaseConnect {
         catch (SQLException e){
             System.out.println(e.getMessage());
         }
-
         return connection;
     }
-
-
-
     public static Connection getConn() {
         if (conn ==null){
             return connect();
         }
         return conn;
     }
-
     public static void setConn(Connection conn) {
         DatabaseConnect.conn = conn;
     }

@@ -3,9 +3,21 @@ package entity;
 public class User {
     private int id;
     private String gender;
-    private String weight;
-    private String height;
-    private String age;
+    private int weight;
+    private int height;
+    private int age;
+
+    public User(){
+
+    }
+    public User(String gender, int height, int weight, int age) {
+        this.gender = gender;
+        this.height =height;
+        this.weight = weight;
+        this.age =age;
+    }
+
+
 
     public int getId() {
         return id;
@@ -19,31 +31,31 @@ public class User {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(String  gender) {
         this.gender = gender;
     }
 
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
-    public String getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 }

@@ -7,6 +7,8 @@ public class ProductTypeResponse {
     public ProductTypeResponse(String typeName, String productTypeName) {
         this.typeName = typeName;
         this.productTypeName =productTypeName;
+    }
+    public ProductTypeResponse() {
 
     }
 

@@ -6,10 +6,15 @@ import dto.request.ProductRequest;
 import dto.response.ProductTypeResponse;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface ProductService {
 
-    ProductResponse productAdd(ProductRequest productRequest);
+    ProductResponse addProduct(ProductRequest productRequest);
 
-    ProductTypeResponse productTypeAdd(ProductTypeRequest productTypeRequest) throws SQLException;
+    Boolean deleteProduct(int id);
+
+    ProductResponse getProduct(int id);
+
+    List<ProductResponse> getAllProduct();
 }

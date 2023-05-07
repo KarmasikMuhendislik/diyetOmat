@@ -1,14 +1,15 @@
 package repository;
-
-import dto.request.ProductTypeRequest;
 import dto.response.ProductResponse;
-import dto.request.ProductRequest;
-import dto.response.ProductTypeResponse;
+import entity.Product;
+import entity.ProductFeatures;
+import entity.ProductType;
 
-import java.sql.SQLException;
+import java.util.List;
 
 public interface ProductRepository {
-    ProductResponse productAdd(ProductRequest productRequest);
+    Boolean deleteProduct(int id);
+    Product getProduct(int id);
+    Product addProduct(Product product, ProductType productType, ProductFeatures productFeatures);
 
-    ProductTypeResponse productTypeAdd(ProductTypeRequest productTypeRequest) throws SQLException;
+    List<Product> getAllProduct();
 }

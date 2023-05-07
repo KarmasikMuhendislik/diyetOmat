@@ -5,6 +5,19 @@ public class ProductType {
     private  String typeName;
     private  String productTypeName;
 
+    public ProductType(String typeName, String productTypeName) {
+        this.typeName = typeName;
+        this.productTypeName = productTypeName;
+    }
+    public ProductType() {
+
+    }
+    public ProductType(int i, String typeName, String productTypeName) {
+        this.id = i;
+        this.typeName = typeName;
+        this.productTypeName = productTypeName;
+    }
+
     public int getId() {
         return id;
     }
