@@ -1,24 +1,31 @@
 package config;
 
-import dto.request.ProductFeaturesRequest;
-import dto.request.ProductRequest;
-import dto.request.ProductTypeRequest;
-import dto.request.UserRequest;
-import dto.response.ProductFeaturesResponse;
-import dto.response.ProductResponse;
-import dto.response.ProductTypeResponse;
-import dto.response.UserResponse;
-import entity.Product;
-import entity.ProductFeatures;
-import entity.ProductType;
-import entity.User;
-import org.mapstruct.BeanMapping;
+import dto.request.*;
+import dto.response.*;
+import entity.*;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration.AccessLevel;
 import org.modelmapper.convention.MatchingStrategies;
 
 public class ModelMapperConfig {
+
+    private static  final Converter<HungerLevel, HungerLevelResponse> HUNGER_LEVEL_HUNGER_LEVEL_RESPONSE_CONVERTER = mappingContext -> {
+      HungerLevel hungerLevel =mappingContext.getSource();
+      HungerLevelResponse hungerLevelResponse = new HungerLevelResponse(
+              hungerLevel.getName(),
+              hungerLevel.getEnergy()
+      );
+      return hungerLevelResponse;
+    };
+
+    private static final Converter<HungerLevelRequest, HungerLevel> HUNGER_LEVEL_REQUEST_HUNGER_LEVEL_CONVERTER = mappingContext -> {
+        HungerLevelRequest hungerLevelRequest = mappingContext.getSource();
+        HungerLevel hungerLevel = new HungerLevel(
+                hungerLevelRequest.getName(),
+                hungerLevelRequest.getEnergy());
+        return hungerLevel;
+    };
 
     private static final Converter<UserRequest, User> USER_REQUEST_USER_CONVERTER = mappingContext -> {
         UserRequest userRequest = mappingContext.getSource();
@@ -68,7 +75,9 @@ public class ModelMapperConfig {
         ProductTypeResponse productTypeResponse =
                 new ProductTypeResponse(
                         productType.getTypeName(),
-                        productType.getProductTypeName());
+                        productType.getProductTypeName(),
+                        productType.getProductPrimaryName())
+                ;
         return productTypeResponse;
     };
 
@@ -77,7 +86,9 @@ public class ModelMapperConfig {
         ProductType productType =
                 new ProductType(
                         productTypeRequest.getTypeName(),
-                        productTypeRequest.getProductTypeName()
+                        productTypeRequest.getProductTypeName(),
+                        productTypeRequest.getProductPrimaryName()
+
                 );
         return productType;
     };
@@ -103,7 +114,6 @@ public class ModelMapperConfig {
 
       return productResponse;
     };
-    @BeanMapping
     public static ModelMapper getModelMapper(){
         ModelMapper modelMapper =  new ModelMapper();
         modelMapper.getConfiguration()
@@ -118,6 +128,8 @@ public class ModelMapperConfig {
         modelMapper.addConverter(PRODUCT_FEATURES_PRODUCT_FEATURES_RESPONSE_CONVERTER,ProductFeatures.class, ProductFeaturesResponse.class);
         modelMapper.addConverter(USER_USER_RESPONSE_CONVERTER,User.class, UserResponse.class);
         modelMapper.addConverter(USER_REQUEST_USER_CONVERTER, UserRequest.class,User.class);
+        modelMapper.addConverter(HUNGER_LEVEL_HUNGER_LEVEL_RESPONSE_CONVERTER, HungerLevel.class, HungerLevelResponse.class);
+        modelMapper.addConverter(HUNGER_LEVEL_REQUEST_HUNGER_LEVEL_CONVERTER, HungerLevelRequest.class, HungerLevel.class);
         return modelMapper;
     }
 }

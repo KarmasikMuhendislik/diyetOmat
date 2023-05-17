@@ -3,7 +3,22 @@ package entity;
 public class HungerLevel {
     private int id;
     private String name;
-    private String energy;
+    private double energy;
+
+    public HungerLevel(){
+
+    }
+
+    public HungerLevel(String name, double energy){
+        this.name = name;
+        this.energy = energy;
+    }
+
+    public HungerLevel(int id, String name, double energy) {
+        this.id = id;
+        this.name = name;
+        this.energy = energy;
+    }
 
     public int getId() {
         return id;
@@ -21,11 +36,11 @@ public class HungerLevel {
         this.name = name;
     }
 
-    public String getEnergy() {
+    public Double getEnergy() {
         return energy;
     }
 
-    public void setEnergy(String energy) {
+    public void setEnergy(Double energy) {
         this.energy = energy;
     }
 }

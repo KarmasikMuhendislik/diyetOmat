@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductTypeRepositoryImpl implements ProductTypeRepository {
     private Connection con = DatabaseConnect.getConn();
@@ -21,18 +23,18 @@ public class ProductTypeRepositoryImpl implements ProductTypeRepository {
     }
     @Override
     public ProductType addProductType(ProductType productType) {
-        String sqlCommand ="Insert INTO product_type (typeName, productTypeName) VALUES (?,?)";
+        String sqlCommand ="Insert INTO product_type (typename, producttypename, productprimaryname) VALUES (?,?,?)";
         PreparedStatement preparedStatement = null;
+        System.out.println("Product ekleme ");
         try{
             preparedStatement = con.prepareStatement(sqlCommand);
             preparedStatement.setString(1, productType.getTypeName());
             preparedStatement.setString(2, productType.getProductTypeName());
-
-            if (preparedStatement.executeUpdate()>1){
-                preparedStatement.close();
-                con.close();
-                return  productType;
-            }
+            preparedStatement.setString(3,productType.getProductPrimaryName());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            con.close();
+            return  productType;
         }
         catch (SQLException ex){
             System.out.println("Ürün Eklenemedi: "+ex.getMessage());
@@ -63,7 +65,6 @@ public class ProductTypeRepositoryImpl implements ProductTypeRepository {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try{
-            System.out.println("getProductİçerisinde");
             preparedStatement = con.prepareStatement(sqlCommand);
             preparedStatement.setInt(1,id);
             resultSet = preparedStatement.executeQuery();
@@ -74,11 +75,34 @@ public class ProductTypeRepositoryImpl implements ProductTypeRepository {
                 productType.setId(resultSet.getInt("id"));
                 productType.setTypeName(resultSet.getString("typeName"));
                 productType.setProductTypeName(resultSet.getString("productTypeName"));
+                productType.setProductPrimaryName(resultSet.getString("productPrimaryName"));
             }
             System.out.println(productType.getProductTypeName()+", "+ productType.getTypeName());
             preparedStatement.close();
             con.close();
             return productType;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<String> getProductPrimaryName() {
+        String sqlCommand = "SELECT DISTINCT productprimaryname FROM public.product_type;";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet =  null;
+        List<String> productPrimaryKeyList = new ArrayList();
+        try{
+            preparedStatement = con.prepareStatement(sqlCommand);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                String key = resultSet.getString("productprimaryname");
+                productPrimaryKeyList.add(key);
+            }
+            con.close();
+            preparedStatement.close();
+            return productPrimaryKeyList;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

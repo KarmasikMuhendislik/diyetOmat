@@ -1,9 +1,6 @@
 package repository.repositoryImpl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import databaseconnection.DatabaseConnect;
-import dto.response.ProductResponse;
 import entity.Product;
 import entity.ProductFeatures;
 import entity.ProductType;
@@ -52,7 +49,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public List<Product> getAllProduct() {
         List<Product>products = new ArrayList();
-        String sqlCommand = "SELECT* From public.product";
+        String sqlCommand = "SELECT*From public.product";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try{

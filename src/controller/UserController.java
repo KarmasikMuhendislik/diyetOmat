@@ -13,7 +13,5 @@ public class UserController {
     public UserResponse addUser(UserRequest userRequest){
         return userService.addUser(userRequest);
     }
-    public double totalEnergy(UserRequest userRequest){
-        return userService.totalEnergy(userRequest);
-    };
+
 }

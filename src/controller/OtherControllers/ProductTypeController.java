@@ -6,6 +6,7 @@ import service.ProductTypeService;
 import service.serviceImpl.ProductTypeServiceImpl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class ProductTypeController {
     private final ProductTypeService productTypeService;
@@ -13,7 +14,7 @@ public class ProductTypeController {
     public ProductTypeController( ) {
         this.productTypeService = new ProductTypeServiceImpl();
     }
-    public ProductTypeResponse addProductType(ProductTypeRequest productTypeRequest) throws SQLException {
+    public ProductTypeResponse addProductType(ProductTypeRequest productTypeRequest)  {
         return productTypeService.addProductType(productTypeRequest);
     }
     public Boolean deleteProductType(int id){
@@ -22,4 +23,7 @@ public class ProductTypeController {
 
     public ProductTypeResponse getProductType (int id){return productTypeService.getProductType(id);}
 
+    public List<String> getProductPrimaryName(){
+        return productTypeService.getProductPrimaryName();
+    }
 }

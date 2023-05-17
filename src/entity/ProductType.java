@@ -5,9 +5,12 @@ public class ProductType {
     private  String typeName;
     private  String productTypeName;
 
-    public ProductType(String typeName, String productTypeName) {
+    private String productPrimaryName;
+
+    public ProductType(String typeName, String productTypeName,String productPrimaryName) {
         this.typeName = typeName;
         this.productTypeName = productTypeName;
+        this.setProductPrimaryName(productPrimaryName);
     }
     public ProductType() {
 
@@ -40,5 +43,13 @@ public class ProductType {
 
     public void setProductTypeName(String productTypeName) {
         this.productTypeName = productTypeName;
+    }
+
+    public String getProductPrimaryName() {
+        return productPrimaryName;
+    }
+
+    public void setProductPrimaryName(String productPrimaryName) {
+        this.productPrimaryName = productPrimaryName;
     }
 }
