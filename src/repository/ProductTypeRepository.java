@@ -14,4 +14,8 @@ public interface ProductTypeRepository {
     ProductType getProductType(int id);
 
     List<String> getProductPrimaryName();
+
+    List<Integer> getPrimaryName(String name);
+
+    ProductType getProductTypeName(String name);
 }

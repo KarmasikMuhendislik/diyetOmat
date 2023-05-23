@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepositoryImpl implements ProductRepository {
-    private Connection con = DatabaseConnect.getConn();
+    private Connection con = null;
     private ModelMapper modelMapper;
     public ProductRepositoryImpl() {
         modelMapper = new ModelMapper();
@@ -21,6 +21,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product addProduct(Product product, ProductType productType, ProductFeatures productFeatures) {
+        con =DatabaseConnect.getConn();
         String sqlCommand ="INSERT INTO public.product (productname, productfee, product_type_id, product_features_id) VALUES( ?, ?, ?, ?);";
         PreparedStatement preparedStatement = null;
         try{
@@ -48,6 +49,8 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public List<Product> getAllProduct() {
+        con =DatabaseConnect.getConn();
+
         List<Product>products = new ArrayList();
         String sqlCommand = "SELECT*From public.product";
         PreparedStatement preparedStatement = null;
@@ -72,9 +75,39 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
     }
 
-
     @Override
+    public List<Product> getAllProductTypeId(Integer id) {
+        con =DatabaseConnect.getConn();
+
+        String sqlCommand = "SELECT*From public.product where product_type_id = ?;";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Product> products = new ArrayList();
+
+        try {
+            preparedStatement = con.prepareStatement(sqlCommand);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("id"));
+                product.setProductFee(resultSet.getInt("productfee"));
+                product.setProductType(resultSet.getInt("product_type_id"));
+                product.setProductFeatures(resultSet.getInt("product_features_id"));
+                product.setProductName(resultSet.getString("productname"));
+                products.add(product);
+            }
+            preparedStatement.close();
+            con.close();
+            return products;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+        @Override
     public Boolean deleteProduct(int id) {
+        con =DatabaseConnect.getConn();
         String sqlCommand = "DELETE FROM public.product Where id = ?";
         PreparedStatement preparedStatement = null;
         try{
@@ -91,6 +124,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product getProduct(int id) {
+        con =DatabaseConnect.getConn();
         String sqlCommand = "SELECT*FROM public.product Where id = ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;

@@ -63,4 +63,11 @@ public class ProductServiceImpl implements ProductService {
         }
         return productResponseList;
     }
+
+    public List<ProductResponse> getAllProductTypeId(Integer id){
+        List<Product> products = productRepository.getAllProductTypeId(id);
+        List<ProductResponse> productResponseList =
+                products.stream().map(product -> modelMapper.map(product, ProductResponse.class)).collect(Collectors.toList());
+        return productResponseList;
+    }
 }

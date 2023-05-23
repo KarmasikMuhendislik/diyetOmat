@@ -26,4 +26,9 @@ public class ProductTypeController {
     public List<String> getProductPrimaryName(){
         return productTypeService.getProductPrimaryName();
     }
+
+    public List<Integer> getPrimaryName(String name){
+        return productTypeService.getByPrimaryName(name);
+    }
+
 }

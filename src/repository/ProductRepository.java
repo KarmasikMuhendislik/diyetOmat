@@ -12,4 +12,6 @@ public interface ProductRepository {
     Product addProduct(Product product, ProductType productType, ProductFeatures productFeatures);
 
     List<Product> getAllProduct();
+
+    List<Product> getAllProductTypeId(Integer id);
 }

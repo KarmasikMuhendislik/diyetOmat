@@ -1,9 +1,7 @@
 package service.serviceImpl;
 
 import dto.request.ProductTypeRequest;
-import dto.response.ProductResponse;
 import dto.response.ProductTypeResponse;
-import entity.ProductFeatures;
 import entity.ProductType;
 import org.modelmapper.ModelMapper;
 import repository.ProductTypeRepository;
@@ -43,4 +41,21 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         }
         return productPrimaryKeyList;
     }
+
+    @Override
+    public List<Integer> getByPrimaryName(String name) {
+        List<Integer> primaryNameList = productTypeRepository.getPrimaryName(name);
+        for(Integer key : primaryNameList){
+            System.out.println(key);
+        }
+        return primaryNameList;
+    }
+
+
+    public ProductTypeResponse getTypeName(String name){
+        ProductType productType = productTypeRepository.getProductTypeName(name);
+        return modelMapper.map(productType,ProductTypeResponse.class);
+    }
+
+
 }

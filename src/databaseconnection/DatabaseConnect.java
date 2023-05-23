@@ -13,7 +13,6 @@ public class DatabaseConnect {
         Connection connection = null;
         try{
             connection = DriverManager.getConnection(url,user,password);
-            System.out.println("Database Bağlantısı başarılı");
         }
         catch (SQLException e){
             System.out.println(e.getMessage());
