@@ -1,4 +1,4 @@
-package controller;
+package controller.OtherControllers;
 
 import dto.request.UserRequest;
 import dto.response.UserResponse;

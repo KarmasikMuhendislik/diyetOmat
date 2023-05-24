@@ -16,4 +16,5 @@ public interface ProductTypeService {
 
     List<Integer> getByPrimaryName(String name);
 
+    List<ProductTypeResponse> getAll();
 }

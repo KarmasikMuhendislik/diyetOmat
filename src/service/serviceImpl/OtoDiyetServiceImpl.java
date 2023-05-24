@@ -51,7 +51,6 @@ public class OtoDiyetServiceImpl implements OtoDiyetService {
         double calori = totalEnergy * hungerLevel.getEnergy();
         return calori;
     }
-
     @Override
     public List<Product> getAvaliableProduct(double userCalories, List<Integer> productPrimaryId) {
             List<Product> productsList = new ArrayList();

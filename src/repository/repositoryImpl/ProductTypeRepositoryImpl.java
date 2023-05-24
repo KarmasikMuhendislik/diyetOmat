@@ -17,44 +17,45 @@ import java.util.List;
 import java.util.PrimitiveIterator;
 
 public class ProductTypeRepositoryImpl implements ProductTypeRepository {
-    private Connection con= null;
+    private Connection con = null;
     private ModelMapper modelMapper;
 
-    public  ProductTypeRepositoryImpl() {
+    public ProductTypeRepositoryImpl() {
         modelMapper = new ModelMapper();
     }
+
     @Override
     public ProductType addProductType(ProductType productType) {
-        con= DatabaseConnect.getConn();
-        String sqlCommand ="Insert INTO product_type (typename, producttypename, productprimaryname) VALUES (?,?,?)";
+        con = DatabaseConnect.getConn();
+        String sqlCommand = "Insert INTO product_type (typename, producttypename, productprimaryname) VALUES (?,?,?)";
         PreparedStatement preparedStatement = null;
         System.out.println("Product ekleme ");
-        try{
+        try {
             preparedStatement = con.prepareStatement(sqlCommand);
             preparedStatement.setString(1, productType.getTypeName());
             preparedStatement.setString(2, productType.getProductTypeName());
-            preparedStatement.setString(3,productType.getProductPrimaryName());
+            preparedStatement.setString(3, productType.getProductPrimaryName());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             con.close();
-            return  productType;
-        }
-        catch (SQLException ex){
-            System.out.println("Ürün Eklenemedi: "+ex.getMessage());
+            return productType;
+        } catch (SQLException ex) {
+            System.out.println("Ürün Eklenemedi: " + ex.getMessage());
         }
 
-        return null;    }
+        return null;
+    }
 
     @Override
     public Boolean deleteProductType(int id) {
         String sqlCommand = "DELETE FROM public.product_type Where id = ?";
-        con= DatabaseConnect.getConn();
+        con = DatabaseConnect.getConn();
 
         PreparedStatement preparedStatement = null;
-        try{
+        try {
             preparedStatement = con.prepareStatement(sqlCommand);
-            preparedStatement.setInt(1,id);
-            var isTrue = (preparedStatement.executeUpdate()>0)? true : false;
+            preparedStatement.setInt(1, id);
+            var isTrue = (preparedStatement.executeUpdate() > 0) ? true : false;
             preparedStatement.close();
             con.close();
             return isTrue;
@@ -62,22 +63,23 @@ public class ProductTypeRepositoryImpl implements ProductTypeRepository {
         } catch (SQLException ex) {
             System.out.println("Ürün Silinemed : " + ex.getMessage());
         }
-        return null;    }
+        return null;
+    }
 
     @Override
     public ProductType getProductType(int id) {
-        con= DatabaseConnect.getConn();
+        con = DatabaseConnect.getConn();
 
         String sqlCommand = "SELECT*FROM public.product_type  Where id = ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try{
+        try {
             preparedStatement = con.prepareStatement(sqlCommand);
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             ProductType productType = null;
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 productType = new ProductType();
                 productType.setId(resultSet.getInt("id"));
                 productType.setTypeName(resultSet.getString("typeName"));
@@ -95,16 +97,16 @@ public class ProductTypeRepositoryImpl implements ProductTypeRepository {
 
     @Override
     public List<String> getProductPrimaryName() {
-        con= DatabaseConnect.getConn();
+        con = DatabaseConnect.getConn();
 
         String sqlCommand = "SELECT DISTINCT productprimaryname FROM public.product_type;";
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet =  null;
+        ResultSet resultSet = null;
         List<String> productPrimaryKeyList = new ArrayList();
-        try{
+        try {
             preparedStatement = con.prepareStatement(sqlCommand);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 String key = resultSet.getString("productprimaryname");
                 productPrimaryKeyList.add(key);
             }
@@ -119,17 +121,17 @@ public class ProductTypeRepositoryImpl implements ProductTypeRepository {
 
     @Override
     public List<Integer> getPrimaryName(String name) {
-        con= DatabaseConnect.getConn();
+        con = DatabaseConnect.getConn();
 
-        String sqlCommand ="SELECT*FROM public.product_type where productprimaryname = ?;";
+        String sqlCommand = "SELECT*FROM public.product_type where productprimaryname = ?;";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Integer> productIdList = new ArrayList();
-        try{
+        try {
             preparedStatement = con.prepareStatement(sqlCommand);
-            preparedStatement.setString(1,name);
+            preparedStatement.setString(1, name);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Integer key = resultSet.getInt("id");
                 productIdList.add(key);
             }
@@ -144,17 +146,17 @@ public class ProductTypeRepositoryImpl implements ProductTypeRepository {
 
     @Override
     public ProductType getProductTypeName(String name) {
-        con= DatabaseConnect.getConn();
+        con = DatabaseConnect.getConn();
         String sqlCommand = "SELECT * FROM public.product_type WHERE typename = ?;";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try{
+        try {
             preparedStatement = con.prepareStatement(sqlCommand);
-            preparedStatement.setString(1,name);
+            preparedStatement.setString(1, name);
             resultSet = preparedStatement.executeQuery();
             ProductType productType = null;
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 productType = new ProductType();
                 productType.setId(resultSet.getInt("id"));
                 productType.setTypeName(resultSet.getString("typeName"));
@@ -165,6 +167,33 @@ public class ProductTypeRepositoryImpl implements ProductTypeRepository {
             con.close();
             return productType;
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<ProductType> getAll() {
+        con = DatabaseConnect.getConn();
+        String sqlCommand = "SELECT * FROM public.product_type;";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<ProductType> productTypeList = new ArrayList<>();
+        try {
+            preparedStatement = con.prepareStatement(sqlCommand);
+            resultSet = preparedStatement.executeQuery();
+            ProductType productType = null;
+            while (resultSet.next()) {
+                productType = new ProductType();
+                productType.setId(resultSet.getInt("id"));
+                productType.setTypeName(resultSet.getString("typeName"));
+                productType.setProductTypeName(resultSet.getString("productTypeName"));
+                productType.setProductPrimaryName(resultSet.getString("productPrimaryName"));
+                productTypeList.add(productType);
+            }
+            preparedStatement.close();
+            con.close();
+            return productTypeList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

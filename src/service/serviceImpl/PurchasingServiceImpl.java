@@ -31,7 +31,6 @@ public class PurchasingServiceImpl implements PurchasigService {
             else {
                 moneyService.cashBack(finalAmount);
             }
-            //Burada .txt dosyasına yazma gerçekleşecek.
             return true;
         }
         else{
@@ -42,6 +41,6 @@ public class PurchasingServiceImpl implements PurchasigService {
         //true ise ürün döndürmeye değil ise üstünü alma ve para tamamlama kısmına gitmesi gerekir.
         //true ise ürün ve para iade kısmına gideriz.
     }
-
+    
 
 }

@@ -1,4 +1,4 @@
-import controller.AutomatController;
+import controller.DirectDiyetController;
 import controller.OtherControllers.ProductTypeController;
 import controller.OtoDiyetController;
 
@@ -10,12 +10,13 @@ public class Main  {
     public static void main(String[] args) throws SQLException {
        ProductTypeController productTypeController =  new ProductTypeController();
        productTypeController.getProductPrimaryName();
+        DirectDiyetController directDiyetController = new DirectDiyetController();
         OtoDiyetController otoDiyetController = new OtoDiyetController();
-        System.out.println(productTypeController.getPrimaryName("HİÇBİRİ"));
         List<Integer> number= new ArrayList<>();
        // number.add(10);
        // number.add(11);
-        number.add(13);
+        //number.add(13);
         //otoDiyetController.optionCaloriAndProduct(245,number);
+        directDiyetController.getProductList();
     }
 }

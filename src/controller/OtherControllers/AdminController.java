@@ -1,4 +1,4 @@
-package controller;
+package controller.OtherControllers;
 
 import dto.response.ProductResponse;
 import dto.request.ProductRequest;

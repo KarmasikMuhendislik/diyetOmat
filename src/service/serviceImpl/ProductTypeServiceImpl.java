@@ -1,6 +1,7 @@
 package service.serviceImpl;
 
 import dto.request.ProductTypeRequest;
+import dto.response.ProductResponse;
 import dto.response.ProductTypeResponse;
 import entity.ProductType;
 import org.modelmapper.ModelMapper;
@@ -9,6 +10,7 @@ import repository.repositoryImpl.ProductTypeRepositoryImpl;
 import service.ProductTypeService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductTypeServiceImpl implements ProductTypeService {
     private final ProductTypeRepository productTypeRepository;
@@ -49,6 +51,14 @@ public class ProductTypeServiceImpl implements ProductTypeService {
             System.out.println(key);
         }
         return primaryNameList;
+    }
+
+    @Override
+    public List<ProductTypeResponse> getAll() {
+        List<ProductType> productTypeList = productTypeRepository.getAll();
+        List<ProductTypeResponse> productTypeResponseList =
+                productTypeList.stream().map(productType -> modelMapper.map(productType, ProductTypeResponse.class)).collect(Collectors.toList());
+        return null;
     }
 
 
