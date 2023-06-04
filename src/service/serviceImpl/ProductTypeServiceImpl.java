@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 public class ProductTypeServiceImpl implements ProductTypeService {
     private final ProductTypeRepository productTypeRepository;
     private ModelMapper modelMapper;
-    public ProductTypeServiceImpl() {
-        this.productTypeRepository = new ProductTypeRepositoryImpl();
-        this.modelMapper = new ModelMapper();
+    public ProductTypeServiceImpl(ProductTypeRepository productTypeRepository, ModelMapper modelMapper) {
+        this.productTypeRepository = productTypeRepository;
+        this.modelMapper = modelMapper;
     }
     @Override
     public ProductTypeResponse addProductType(ProductTypeRequest productTypeRequest) {
@@ -34,7 +34,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         ProductType productType = productTypeRepository.getProductType(id);
         return modelMapper.map(productType,ProductTypeResponse.class);
     }
-
+//Öncelik Varmı olarak kullanılacak yer Burası
     @Override
     public List<String> getProductPrimaryName() {
         List<String> productPrimaryKeyList = productTypeRepository.getProductPrimaryName();

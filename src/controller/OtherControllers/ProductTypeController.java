@@ -2,6 +2,7 @@ package controller.OtherControllers;
 
 import dto.request.ProductTypeRequest;
 import dto.response.ProductTypeResponse;
+import entity.ProductType;
 import service.ProductTypeService;
 import service.serviceImpl.ProductTypeServiceImpl;
 
@@ -11,8 +12,8 @@ import java.util.List;
 public class ProductTypeController {
     private final ProductTypeService productTypeService;
 
-    public ProductTypeController( ) {
-        this.productTypeService = new ProductTypeServiceImpl();
+    public ProductTypeController(ProductTypeService productTypeService) {
+        this.productTypeService = productTypeService;
     }
     public ProductTypeResponse addProductType(ProductTypeRequest productTypeRequest)  {
         return productTypeService.addProductType(productTypeRequest);

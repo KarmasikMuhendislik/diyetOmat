@@ -6,6 +6,7 @@ public class Product {
     private int productType;
     private int productFee;
     private int productFeatures;
+    private int productAmount;
 
     public Product(String productName, int productType, int productFee, int productFeatures) {
         this.setProductName(productName);

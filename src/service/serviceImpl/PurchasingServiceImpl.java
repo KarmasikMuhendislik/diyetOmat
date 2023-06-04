@@ -10,37 +10,40 @@ public class PurchasingServiceImpl implements PurchasigService {
     private final ProductService productService;
     private final MoneyService moneyService;
     private ModelMapper modelMapper;
-    public PurchasingServiceImpl( ) {
-        this.productService = new ProductServiceImpl();
-        this.moneyService = new MoneyServiceImpl();
-        this.modelMapper =  new ModelMapper();
+    public PurchasingServiceImpl(ModelMapper modelMapper,
+                                 MoneyService moneyService,
+                                 ProductService productService) {
+        this.productService = productService;
+        this.moneyService = moneyService;
+        this.modelMapper =  modelMapper;
     }
+
+
     @Override
-    public Boolean productToBuy(int productId, int amount) {
-        Product product = modelMapper.map(productService.getProduct(productId),Product.class);
-        //Burada kontrol lazım işlemlerin burada olması gerekiyor.
-        moneyService.addMoney(amount);
-        Boolean isItSold = (product.getProductFee()<=amount)? true: false;
+    public Double buyProduct(int id, int money) {
+        Product product = modelMapper.map(productService.getProduct(id),Product.class);
+        Double cashBackMoney = 0.0;
+        moneyService.addMoney(moneyService.getMoney()+money);
+        Boolean isItSold = (product.getProductFee()<=money)? true: false;
         if(isItSold == true){
-            //ürün dönderilecek ve kullanıcıya para geri ödenecek.
-            int finalAmount = product.getProductFee() - amount;
+            double finalAmount = Math.abs(product.getProductFee() - money);
             moneyService.addMoney(moneyService.getMoney()-finalAmount);
             if(finalAmount>0){
                 moneyService.cashBack(finalAmount);
+                cashBackMoney=finalAmount;
             }
-            else {
+            else{
                 moneyService.cashBack(finalAmount);
-            }
-            return true;
-        }
-        else{
-            moneyService.addMoney(moneyService.getMoney()-amount);
-            moneyService.cashBack(amount);
-            return false;
-        }
-        //true ise ürün döndürmeye değil ise üstünü alma ve para tamamlama kısmına gitmesi gerekir.
-        //true ise ürün ve para iade kısmına gideriz.
-    }
-    
+                cashBackMoney=finalAmount;
 
+            }
+            return cashBackMoney;
+        }
+        else {
+            moneyService.addMoney(moneyService.getMoney()-money);
+            cashBackMoney=moneyService.cashBack(money);
+            return cashBackMoney;
+
+        }
+    }
 }

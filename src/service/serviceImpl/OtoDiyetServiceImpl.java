@@ -25,12 +25,16 @@ public class OtoDiyetServiceImpl implements OtoDiyetService {
     private final ProductRepository productRepository;
     private final ProductTypeRepository productTypeRepository;
     private final ProductFeaturesRepository productFeaturesRepository;
-    public OtoDiyetServiceImpl( ) {
-        this.productRepository = new ProductRepositoryImpl();
-        this.modelMapper = new ModelMapper();
-        this.hungerLevelRepository = new HungerLevelRepositoryImpl();
-        this.productTypeRepository = new ProductTypeRepositoryImpl();
-        this.productFeaturesRepository = new ProductFeaturesRepositoryImpl();
+    public OtoDiyetServiceImpl( ModelMapper modelMapper,
+                                HungerLevelRepository hungerLevelRepository,
+                                ProductRepository productRepository,
+                                ProductTypeRepository productTypeRepository,
+                                ProductFeaturesRepository productFeaturesRepository) {
+        this.productRepository = productRepository;
+        this.modelMapper = modelMapper;
+        this.hungerLevelRepository = hungerLevelRepository;
+        this.productTypeRepository = productTypeRepository;
+        this.productFeaturesRepository = productFeaturesRepository;
     }
 
     @Override
@@ -46,11 +50,11 @@ public class OtoDiyetServiceImpl implements OtoDiyetService {
 
     @Override
     public double requiredCalories(double totalEnergy, int id) {
-        //Burada birde açlık düzeyinin verilmesi gerekiyor.
         HungerLevel hungerLevel = hungerLevelRepository.getHungerLevel(id);
         double calori = totalEnergy * hungerLevel.getEnergy();
         return calori;
     }
+    //ProductResponse dönecek
     @Override
     public List<Product> getAvaliableProduct(double userCalories, List<Integer> productPrimaryId) {
             List<Product> productsList = new ArrayList();

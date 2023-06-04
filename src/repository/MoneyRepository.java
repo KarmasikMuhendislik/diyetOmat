@@ -1,9 +1,9 @@
 package repository;
 
 public interface MoneyRepository {
-    int addMoney(int moneyAmount);
+    double addMoney(double moneyAmount);
 
-    int getMoney();
+    double getMoney();
 
-    int cashOut(int moneyAmount);
+    double cashOut(double moneyAmount);
 }

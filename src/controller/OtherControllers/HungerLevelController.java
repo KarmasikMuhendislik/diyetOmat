@@ -11,8 +11,8 @@ public class HungerLevelController {
 
     private final HungerLevelService hungerLevelService;
 
-    public HungerLevelController( ) {
-        this.hungerLevelService = new HungerLevelServiceImpl();
+    public HungerLevelController(HungerLevelService hungerLevelService ) {
+        this.hungerLevelService = hungerLevelService;
     }
 
 

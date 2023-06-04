@@ -10,8 +10,8 @@ public class ProductFeaturesController {
 
     private final ProductFeaturesService productFeaturesService;
 
-    public ProductFeaturesController( ) {
-        this.productFeaturesService = new ProductFeaturesServiceImpl();
+    public ProductFeaturesController(ProductFeaturesService productFeaturesService ) {
+        this.productFeaturesService = productFeaturesService;
     }
     public ProductFeaturesResponse addProductFeatures (ProductFeaturesRequest productFeaturesRequest){
         return productFeaturesService.addProdcutFeatures(productFeaturesRequest);

@@ -1,11 +1,11 @@
 package service;
 
 public interface MoneyService {
-    int addMoney(int moneyAmount);
+    double addMoney(double moneyAmount);
 
-    int getMoney();
+    double getMoney();
 
-    int cashOut(int moneyAmount);
+    double cashOut(double moneyAmount);
 
-    int cashBack(int cashBackMoney);
+    double cashBack(double cashBackMoney);
 }

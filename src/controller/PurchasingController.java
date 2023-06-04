@@ -6,11 +6,12 @@ import service.serviceImpl.PurchasingServiceImpl;
 public class PurchasingController {
     private  final PurchasigService purchasigService;
 
-    public PurchasingController( ) {
-        this.purchasigService = new PurchasingServiceImpl();
+    public PurchasingController( PurchasigService purchasigService) {
+        this.purchasigService = purchasigService;
     }
 
-    public Boolean buyProduct(int id,int amount){
-        return purchasigService.productToBuy(id,amount);
+
+    public Double buyProduct(int id, int money){
+        return purchasigService.buyProduct(id,money);
     }
 }

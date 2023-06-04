@@ -8,16 +8,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class MoneyRepositoryImpl implements MoneyRepository {
-    private Connection con = DatabaseConnect.getConn();
+    private Connection con = null;
 
     @Override
-    public int addMoney(int moneyAmount) {
+    public double addMoney(double moneyAmount) {
+        con = DatabaseConnect.getConn();
        // String sqlCommand = "INSERT INTO public.moneyentity(moneyamount)VALUES(?);";
         String sqlCommand = "UPDATE public.moneyentity SET moneyamount= ? WHERE id = 1;";
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = con.prepareStatement(sqlCommand);
-            preparedStatement.setInt(1,moneyAmount);
+            preparedStatement.setDouble(1,moneyAmount);
             preparedStatement.executeUpdate();
             con.close();
             preparedStatement.close();
@@ -28,7 +29,8 @@ public class MoneyRepositoryImpl implements MoneyRepository {
         }
     }
     @Override
-    public int getMoney() {
+    public double getMoney() {
+        con = DatabaseConnect.getConn();
         String sqlCommand ="SELECT*FROM public.moneyentity WHERE id = 1;";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -48,12 +50,13 @@ public class MoneyRepositoryImpl implements MoneyRepository {
     }
 
     @Override
-    public int cashOut(int moneyAmount) {
+    public double cashOut(double moneyAmount) {
+        con = DatabaseConnect.getConn();
         String sqlCommand = "UPDATE public.moneyentity SET moneyamount= ? WHERE id = 1;";
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = con.prepareStatement(sqlCommand);
-            preparedStatement.setInt(1,moneyAmount);
+            preparedStatement.setDouble(1,moneyAmount);
             con.close();
             preparedStatement.close();
             return moneyAmount;

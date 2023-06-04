@@ -7,8 +7,8 @@ import service.serviceImpl.UserServiceImpl;
 
 public class UserController {
     private  UserService userService;
-    public UserController() {
-        this.userService = new UserServiceImpl();
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
     public UserResponse addUser(UserRequest userRequest){
         return userService.addUser(userRequest);

@@ -24,11 +24,14 @@ public class ProductServiceImpl implements ProductService {
     private final ProductTypeRepository productTypeRepository;
     private final ProductFeaturesRepository productFeaturesRepository;
     private ModelMapper modelMapper;
-    public ProductServiceImpl( ) {
-        this.productRepository = new ProductRepositoryImpl();
-        this.productTypeRepository = new ProductTypeRepositoryImpl();
-        this.productFeaturesRepository = new ProductFeaturesRepositoryImpl();
-        this.modelMapper = new ModelMapper();
+    public ProductServiceImpl(ProductRepository productRepository,
+                              ProductTypeRepository productTypeRepository,
+                              ProductFeaturesRepository productFeaturesRepository,
+                              ModelMapper modelMapper) {
+        this.productRepository = productRepository;
+        this.productTypeRepository = productTypeRepository;
+        this.productFeaturesRepository = productFeaturesRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override

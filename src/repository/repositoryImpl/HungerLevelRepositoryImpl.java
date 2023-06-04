@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HungerLevelRepositoryImpl implements HungerLevelRepository {
-    private Connection con = DatabaseConnect.getConn();
+    private Connection con =null;
     @Override
     public HungerLevel addHungerLevel(HungerLevel hungerLevel) {
+        con = DatabaseConnect.getConn();
         String sqlCommand = "INSERT INTO public.hungerlevel (name, energy)VALUES(?, ?);";
         PreparedStatement preparedStatement = null;
         try{
@@ -30,6 +31,7 @@ public class HungerLevelRepositoryImpl implements HungerLevelRepository {
     }
     @Override
     public boolean deleteHungerLevel(int id) {
+        con = DatabaseConnect.getConn();
         String sqlCommand = "DELETE FROM public.hungerlevel WHERE id= ?;";
         PreparedStatement preparedStatement = null;
         try{
@@ -46,7 +48,9 @@ public class HungerLevelRepositoryImpl implements HungerLevelRepository {
     }
 
     @Override
-    public HungerLevel getHungerLevel(int id) {
+    public HungerLevel getHungerLevel(int id)
+    {
+        con = DatabaseConnect.getConn();
         //String sqlCommand = "UPDATE public.hungerlevel SET name = ?, energy = 0  WHERE id = ?;";
         String sqlCommand = "SELECT id, name, energy FROM public.hungerlevel Where id = ?;";
         PreparedStatement preparedStatement =  null;
@@ -70,6 +74,7 @@ public class HungerLevelRepositoryImpl implements HungerLevelRepository {
     }
     @Override
     public List<HungerLevel> getAll() {
+        con = DatabaseConnect.getConn();
         String sqlCommand = "SELECT*FROM public.hungerlevel;";
         List<HungerLevel> hungerLevelsList = new ArrayList();
         PreparedStatement preparedStatement = null;

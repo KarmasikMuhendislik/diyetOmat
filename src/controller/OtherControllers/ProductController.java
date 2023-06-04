@@ -11,8 +11,8 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
-    public ProductController( ) {
-        this.productService = new ProductServiceImpl();
+    public ProductController(ProductService productService ) {
+        this.productService = productService;
 
     }
     public ProductResponse addProduct(ProductRequest productRequest){

@@ -7,24 +7,24 @@ import service.MoneyService;
 public class MoneyServiceImpl implements MoneyService {
     private final MoneyRepository moneyRepository;
 
-    public MoneyServiceImpl() {
-        this.moneyRepository = new MoneyRepositoryImpl();
+    public MoneyServiceImpl(MoneyRepository moneyRepository) {
+        this.moneyRepository = moneyRepository;
     }
     @Override
-    public int addMoney(int moneyAmount) {
+    public double addMoney(double moneyAmount) {
         return moneyRepository.addMoney(moneyAmount);
     }
     @Override
-    public int getMoney() {
+    public double getMoney() {
         return moneyRepository.getMoney();
     }
     @Override
-    public int cashOut(int moneyAmount) {
+    public double cashOut(double moneyAmount) {
         return moneyRepository.cashOut(moneyAmount);
     }
 
     @Override
-    public int cashBack(int cashBackMoney) {
+    public double cashBack(double cashBackMoney) {
         return  cashBackMoney ;
     }
 }

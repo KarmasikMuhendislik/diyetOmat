@@ -1,5 +1,6 @@
 package service.serviceImpl;
 
+import dto.response.ProductResponse;
 import entity.Product;
 import entity.ProductType;
 import org.modelmapper.ModelMapper;
@@ -11,10 +12,12 @@ import repository.repositoryImpl.HungerLevelRepositoryImpl;
 import repository.repositoryImpl.ProductFeaturesRepositoryImpl;
 import repository.repositoryImpl.ProductRepositoryImpl;
 import repository.repositoryImpl.ProductTypeRepositoryImpl;
+import service.HungerLevelService;
 import service.ManuelDiyetService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ManuelDiyetServiceImpl implements ManuelDiyetService {
     private final ModelMapper modelMapper;
@@ -22,17 +25,22 @@ public class ManuelDiyetServiceImpl implements ManuelDiyetService {
     private final ProductRepository productRepository;
     private final ProductTypeRepository productTypeRepository;
     private final ProductFeaturesRepository productFeaturesRepository;
-    public ManuelDiyetServiceImpl( ) {
-        this.productRepository = new ProductRepositoryImpl();
-        this.modelMapper = new ModelMapper();
-        this.hungerLevelRepository = new HungerLevelRepositoryImpl();
-        this.productTypeRepository = new ProductTypeRepositoryImpl();
-        this.productFeaturesRepository = new ProductFeaturesRepositoryImpl();    }
+    public ManuelDiyetServiceImpl(ModelMapper modelMapper,
+                                  HungerLevelRepository hungerLevelRepository,
+                                  ProductRepository productRepository,
+                                  ProductTypeRepository productTypeRepository,
+                                  ProductFeaturesRepository productFeaturesRepository) {
+        this.productRepository = productRepository;
+        this.modelMapper = modelMapper;
+        this.hungerLevelRepository = hungerLevelRepository;
+        this.productTypeRepository = productTypeRepository;
+        this.productFeaturesRepository = productFeaturesRepository;}
 
 
     @Override
-    public List<Product> getAvaliableProduct(double userCalories, List<Integer> productPrimaryId) {
+    public List<ProductResponse> getAvaliableProduct(double userCalories, List<Integer> productPrimaryId) {
         List<Product> productsList = new ArrayList();
+        List<ProductResponse> productResponseList = new ArrayList<>();
         if (0 < userCalories && userCalories < 51) {
             //A1,A2 ve A3 dönecek
             //Burada direk A1dönecek
@@ -73,7 +81,8 @@ public class ManuelDiyetServiceImpl implements ManuelDiyetService {
                 for (Product product : productsList){
                     System.out.println(product.getProductName());
                 }
-                return productsList;
+                return  productResponseList =
+                        productsList.stream().map(product -> modelMapper.map(product, ProductResponse.class)).collect(Collectors.toList());
             }
 
         }
@@ -126,7 +135,8 @@ public class ManuelDiyetServiceImpl implements ManuelDiyetService {
                 for (Product product : productsList){
                     System.out.println(product.getProductName());
                 }
-                return productsList;
+                return productResponseList =
+                        productsList.stream().map(product -> modelMapper.map(product, ProductResponse.class)).collect(Collectors.toList());
             }
         }
         else if(200<userCalories && userCalories<301){
@@ -175,7 +185,8 @@ public class ManuelDiyetServiceImpl implements ManuelDiyetService {
                 for (Product product : productsList){
                     System.out.println(product.getProductName());
                 }
-                return productsList;
+                return productResponseList =
+                        productsList.stream().map(product -> modelMapper.map(product, ProductResponse.class)).collect(Collectors.toList());
             }
 
         }
@@ -227,7 +238,8 @@ public class ManuelDiyetServiceImpl implements ManuelDiyetService {
                 for (Product product : productsList){
                     System.out.println(product.getProductName());
                 }
-                return productsList;
+                return productResponseList =
+                        productsList.stream().map(product -> modelMapper.map(product, ProductResponse.class)).collect(Collectors.toList());
             }
 
         }

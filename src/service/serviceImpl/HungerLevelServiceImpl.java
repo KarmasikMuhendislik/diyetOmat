@@ -16,9 +16,9 @@ public class HungerLevelServiceImpl implements HungerLevelService {
     private final ModelMapper modelMapper;
     private final HungerLevelRepository hungerLevelRepository;
 
-    public HungerLevelServiceImpl( ) {
-        this.hungerLevelRepository = new HungerLevelRepositoryImpl();
-        this.modelMapper = new ModelMapper();
+    public HungerLevelServiceImpl(ModelMapper modelMapper, HungerLevelRepository hungerLevelRepository ) {
+        this.hungerLevelRepository = hungerLevelRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override

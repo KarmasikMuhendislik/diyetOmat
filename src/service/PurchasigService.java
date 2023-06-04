@@ -1,5 +1,5 @@
 package service;
 
 public interface PurchasigService {
-    public Boolean productToBuy(int productId, int amount);
+    Double buyProduct(int id, int money);
 }

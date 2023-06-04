@@ -12,11 +12,11 @@ import java.util.function.Supplier;
 
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-    private final ModelMapper modelMapper;
-    public UserServiceImpl( ) {
-        this.userRepository = new UserRepositoryImpl();
-        this.modelMapper = new ModelMapper();
+    private  UserRepository userRepository;
+    private  ModelMapper modelMapper;
+    public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository ) {
+        this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
     }
     @Override
     public UserResponse addUser(UserRequest userRequest) {

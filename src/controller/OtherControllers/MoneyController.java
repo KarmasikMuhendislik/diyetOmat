@@ -7,17 +7,17 @@ public class MoneyController {
 
     private final MoneyService moneyService;
 
-    public MoneyController() {
-        this.moneyService = new MoneyServiceImpl();
+    public MoneyController(MoneyService moneyService) {
+        this.moneyService = moneyService;
     }
-    public int addMoney(int moneyAmount){
+    public double addMoney(int moneyAmount){
         return moneyService.addMoney(moneyAmount);
     }
-    public int getMoney(){
+    public double getMoney(){
         return moneyService.getMoney();
     }
 
-    public int cashOut(int moneyAmount){
+    public double cashOut(int moneyAmount){
         return moneyService.cashOut(moneyAmount);
     }
 }
