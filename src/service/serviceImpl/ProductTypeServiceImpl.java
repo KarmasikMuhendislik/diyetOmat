@@ -38,9 +38,9 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     @Override
     public List<String> getProductPrimaryName() {
         List<String> productPrimaryKeyList = productTypeRepository.getProductPrimaryName();
-        for(String string : productPrimaryKeyList){
-            System.out.println(string);
-        }
+        //for(String string : productPrimaryKeyList){
+        //    System.out.println(string);
+        //}
         return productPrimaryKeyList;
     }
 

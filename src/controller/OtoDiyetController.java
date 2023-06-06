@@ -2,6 +2,7 @@ package controller;
 
 import dto.request.UserRequest;
 import dto.response.HungerLevelResponse;
+import dto.response.ProductResponse;
 import entity.Product;
 import service.*;
 
@@ -60,7 +61,7 @@ public class OtoDiyetController{
 
     // Gerekli kalori miktarına ve önceliğe göre de tabloda denk gelen bölgedeki ürünler kullanıcıya sunulur.
 
-    public List<Product> optionCalorieAndProduct(double userCalories, List<Integer> productPrimaryId){
+    public List<ProductResponse> optionCalorieAndProduct(double userCalories, List<Integer> productPrimaryId){
         return otoDiyetService.getAvaliableProduct(userCalories,productPrimaryId);
     }
 

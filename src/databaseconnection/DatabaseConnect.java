@@ -8,7 +8,7 @@ public class DatabaseConnect {
     private static Connection conn = null;
     private static final String url ="jdbc:postgresql://localhost:5432/otomat";
     private static final String user="postgres";
-    private static final String password="12345";
+    private static final String password="root";
     public static Connection connect(){
         Connection connection = null;
         try{

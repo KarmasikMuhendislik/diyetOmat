@@ -13,6 +13,7 @@ public class ModelMapperConfig {
     private static  final Converter<HungerLevel, HungerLevelResponse> HUNGER_LEVEL_HUNGER_LEVEL_RESPONSE_CONVERTER = mappingContext -> {
       HungerLevel hungerLevel =mappingContext.getSource();
       HungerLevelResponse hungerLevelResponse = new HungerLevelResponse(
+              hungerLevel.getId(),
               hungerLevel.getName(),
               hungerLevel.getEnergy()
       );

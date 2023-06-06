@@ -1,6 +1,7 @@
 package service;
 
 import dto.request.UserRequest;
+import dto.response.ProductResponse;
 import entity.Product;
 
 import java.util.List;
@@ -11,5 +12,5 @@ public interface OtoDiyetService {
     double requiredCalories(double totalEnergy,int id);
 
 
-    List<Product> getAvaliableProduct(double userCalories, List<Integer> productPrimaryId);
+    List<ProductResponse> getAvaliableProduct(double userCalories, List<Integer> productPrimaryId);
 }
