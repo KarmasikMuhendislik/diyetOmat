@@ -101,7 +101,7 @@ public class OtomaticEntry extends Visualize implements Entry {
         System.out.println(energy);
         System.out.println(hr.getId());
 
-        System.out.println(requiredEnergy);
+        System.out.println("gerekli Kalori: "+ (int)requiredEnergy);
         for (Integer i : ptr
              ) {
             System.out.println("id:"+i);

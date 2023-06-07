@@ -7,7 +7,7 @@ import entity.Product;
 import java.util.List;
 
 public interface OtoDiyetService {
-    double totalEnergy(UserRequest userRequest);
+    int totalEnergy(UserRequest userRequest);
 
     double requiredCalories(double totalEnergy,int id);
 

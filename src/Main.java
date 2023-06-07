@@ -9,11 +9,7 @@ import controller.OtherControllers.ProductController;
 import controller.OtherControllers.ProductTypeController;
 import controller.OtoDiyetController;
 import controller.PurchasingController;
-import entity.Money;
-import entity.Product;
-import entity.ProductFeatures;
-import entity.ProductType;
-import org.hibernate.type.ManyToOneType;
+
 import org.modelmapper.ModelMapper;
 import repository.*;
 import repository.repositoryImpl.*;
