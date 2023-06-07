@@ -1,6 +1,7 @@
 package service.serviceImpl;
 
 import dto.request.UserRequest;
+import dto.response.ProductResponse;
 import entity.*;
 import org.modelmapper.ModelMapper;
 import repository.HungerLevelRepository;
@@ -17,6 +18,7 @@ import java.awt.color.ProfileDataException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class OtoDiyetServiceImpl implements OtoDiyetService {
 
@@ -39,6 +41,7 @@ public class OtoDiyetServiceImpl implements OtoDiyetService {
 
     @Override
     public double totalEnergy(UserRequest userRequest) {
+
         User user = modelMapper.map(userRequest, User.class);
         int energy = 0;
         Supplier<Double> result = (userRequest.getGender()=="K")? ()->femaleTotalEnergy(user)
@@ -56,7 +59,7 @@ public class OtoDiyetServiceImpl implements OtoDiyetService {
     }
     //ProductResponse dönecek
     @Override
-    public List<Product> getAvaliableProduct(double userCalories, List<Integer> productPrimaryId) {
+    public List<ProductResponse> getAvaliableProduct(double userCalories, List<Integer> productPrimaryId) {
             List<Product> productsList = new ArrayList();
             if (0 < userCalories && userCalories < 51) {
                 //A1,A2 ve A3 dönecek
@@ -98,7 +101,9 @@ public class OtoDiyetServiceImpl implements OtoDiyetService {
                     for (Product product : productsList){
                         System.out.println(product.getProductName());
                     }
-                    return productsList;
+                    List<ProductResponse> productResponseList =
+                            productsList.stream().map(product -> modelMapper.map(product, ProductResponse.class)).collect(Collectors.toList());
+                    return productResponseList;
                 }
 
             }
@@ -151,7 +156,9 @@ public class OtoDiyetServiceImpl implements OtoDiyetService {
                     for (Product product : productsList){
                         System.out.println(product.getProductName());
                     }
-                    return productsList;
+                    List<ProductResponse> productResponseList =
+                            productsList.stream().map(product -> modelMapper.map(product, ProductResponse.class)).collect(Collectors.toList());
+                    return productResponseList;
                 }
                 }
             else if(200<userCalories && userCalories<301){
@@ -200,7 +207,9 @@ public class OtoDiyetServiceImpl implements OtoDiyetService {
                     for (Product product : productsList){
                         System.out.println(product.getProductName());
                     }
-                    return productsList;
+                    List<ProductResponse> productResponseList =
+                            productsList.stream().map(product -> modelMapper.map(product, ProductResponse.class)).collect(Collectors.toList());
+                    return productResponseList;
                 }
 
             }
@@ -252,7 +261,9 @@ public class OtoDiyetServiceImpl implements OtoDiyetService {
                     for (Product product : productsList){
                         System.out.println(product.getProductName());
                     }
-                    return productsList;
+                    List<ProductResponse> productResponseList =
+                            productsList.stream().map(product -> modelMapper.map(product, ProductResponse.class)).collect(Collectors.toList());
+                    return productResponseList;
                 }
 
             }
