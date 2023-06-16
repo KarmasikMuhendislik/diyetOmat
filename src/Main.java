@@ -9,20 +9,12 @@ import controller.OtherControllers.ProductController;
 import controller.OtherControllers.ProductTypeController;
 import controller.OtoDiyetController;
 import controller.PurchasingController;
-import entity.Money;
-import entity.Product;
-import entity.ProductFeatures;
-import entity.ProductType;
-import org.hibernate.type.ManyToOneType;
 import org.modelmapper.ModelMapper;
 import repository.*;
 import repository.repositoryImpl.*;
 import service.*;
 import service.serviceImpl.*;
-
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main  {

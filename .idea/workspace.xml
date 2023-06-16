@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c58491b-6f9e-4230-bf9d-2b5e5bd57863" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/View/Entries/DirectEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Entries/ManuelEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Entries/OtomaticEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Entries/Visualize.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Entry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diyetOmat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/diyetOmat.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/ModelMapperConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/ModelMapperConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/OtoDiyetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/OtoDiyetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/databaseconnection/DatabaseConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/databaseconnection/DatabaseConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/response/HungerLevelResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/response/HungerLevelResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/OtoDiyetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/OtoDiyetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/serviceImpl/OtoDiyetServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/serviceImpl/OtoDiyetServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/serviceImpl/ProductTypeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/serviceImpl/ProductTypeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +39,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
