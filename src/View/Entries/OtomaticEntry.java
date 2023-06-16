@@ -44,7 +44,7 @@ public class OtomaticEntry extends Visualize implements Entry {
                 break;
             }
             else{
-                System.out.println("geçerli bir cinsiyet girin");
+                System.out.println("Geçerli bir cinsiyet girin:");
             }
         }while(true);
 
@@ -58,7 +58,7 @@ public class OtomaticEntry extends Visualize implements Entry {
     }
     public HungerLevelResponse getHungerLevel(){
         Scanner sc = new Scanner(System.in);
-        System.out.println( "açlık seviyenizi girin ");
+        System.out.println( "Açlık seviyenizi girin: ");
         for(HungerLevelResponse hr : ch.getAllHungerLevel()){
             System.out.print(hr.getName() + "|" + hr.getId());
             System.out.print( " || ");
@@ -72,7 +72,7 @@ public class OtomaticEntry extends Visualize implements Entry {
                 break;
             }
             else {
-                System.out.println("geçerli bir açlık seviyesi girin");
+                System.out.println("Geçerli bir açlık seviyesi girin:");
             }
         }while(true);
         System.out.println("hunger level id :"+ levelId);
@@ -101,7 +101,7 @@ public class OtomaticEntry extends Visualize implements Entry {
         System.out.println(energy);
         System.out.println(hr.getId());
 
-        System.out.println("gerekli Kalori: "+ (int)requiredEnergy);
+        System.out.println("Gerekli Kalori: "+ (int)requiredEnergy);
         for (Integer i : ptr
              ) {
             System.out.println("id:"+i);

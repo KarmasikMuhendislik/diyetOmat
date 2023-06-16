@@ -19,7 +19,7 @@ public class Visualize {
     public void showProducts(List<ProductResponse> productList) {
 
         System.out.println("Ürün Listesi");
-        System.out.println("Product Id || Product ismi || Product Tipi || Product ücreti || Product kalorisi ");
+        System.out.println("Product Id || Product İsmi || Product Tipi || Product Ücreti || Product Kalorisi ");
         for (ProductResponse p : productList
         ) {
             System.out.println(p.getId() + " || " + p.getProductName() +" || " + p.getProductType() + " || " + p.getProductFee() + " || " + p.getProductFeatures());
@@ -30,7 +30,7 @@ public class Visualize {
     public List<Integer> getPriorities(){
         Scanner sc = new Scanner(System.in);
         List<String> priorityList = prodType.getProductPrimaryName();
-        System.out.println("Aşağıdaki diyet türlerinden birini seçin ve seçiminizi yazın");
+        System.out.println("Aşağıdaki diyet türlerinden birini seçin ve seçiminizi yazın:");
         System.out.println("---");
         for (String s : priorityList
              ) {
@@ -43,7 +43,7 @@ public class Visualize {
                 return prodType.getPrimaryName(s);
             }
             else{
-                System.out.println("diyet türünü düzgün yazın");
+                System.out.println("Diyet türünü düzgün yazın.");
             }
 
         }while(true);
@@ -53,27 +53,27 @@ public class Visualize {
     }
     public void selection() {
 
-        System.out.println("tercih ettiğiniz diyetin id değerini girin");
+        System.out.println("Tercih ettiğiniz diyetin id değerini girin");
         Scanner sc = new Scanner(System.in);
         int id = sc.nextInt();
         ProductResponse p = prod.getProduct(id);
-        System.out.println("seçtiğiniz diyet bilgileri:");
+        System.out.println("Seçtiğiniz diyet bilgileri:");
         System.out.println(p.getId() + " || " + p.getProductName() +" || " + p.getProductType() + " || " + p.getProductFee() + " || " + p.getProductFeatures());
 
         do{
-            System.out.println("girilecek tutar :" + p.getProductFee());
-            System.out.println("iptal için 0 girin");
+            System.out.println("Girilecek tutar :" + p.getProductFee());
+            System.out.println("İptal için 0 girin");
             int payment = sc.nextInt();
             if (payment == p.getProductFee() && payment!=0){
-                System.out.println("ödeme başarılı afiyet olsun");
+                System.out.println("Ödeme başarılı afiyet olsun.");
                 break;
             }
             else if (payment==0){
-                System.out.println("sipariş iptal edildi");
+                System.out.println("Sipariş iptal edildi.");
                 break;
             }
             else{
-                System.out.println("ödeme başarısız tekrar deneyin");
+                System.out.println("Ödeme başarısız tekrar deneyin.");
             }
 
         }

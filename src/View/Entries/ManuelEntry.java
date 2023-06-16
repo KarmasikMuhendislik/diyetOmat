@@ -25,7 +25,7 @@ public class ManuelEntry extends Visualize implements Entry {
 
     public HungerLevelResponse getHungerLevel(){
         Scanner sc = new Scanner(System.in);
-        System.out.println( "açlık seviyenizi girin ");
+        System.out.println( "Açlık seviyenizi girin: ");
         for(HungerLevelResponse hr : ch.getAllHungerLevel()){
             System.out.print(hr.getName() + "|" + hr.getId());
             System.out.print( " || ");
@@ -39,14 +39,14 @@ public class ManuelEntry extends Visualize implements Entry {
                 break;
             }
             else {
-                System.out.println("geçerli bir açlık seviyesi girin");
+                System.out.println("Geçerli bir açlık seviyesi girin.");
             }
         }while(true);
         return ch.getHugerLevel(levelId);
     }
     public double getCaloriesInfo(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Tercih ettiğiniz kalori değerini girin");
+        System.out.println("Tercih ettiğiniz kalori değerini girin:");
         double energy = sc.nextDouble();
         return energy;
     }
