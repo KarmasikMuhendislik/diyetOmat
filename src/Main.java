@@ -60,7 +60,7 @@ public class Main  {
 
         boolean out =false;
         while (true){
-            System.out.println("Diyet türünüzü belirtiniz: 1 direk, 2 oto diyet, 3 manuel diyet, çıkış için herhangi bir tuşa basın");
+            System.out.println("Diyet türünüzü belirtiniz: 1)Direkt Giriş, 2) Oto Diyet, 3) Manuel Diyet, Çıkış için herhangi bir tuşa basın...");
             Scanner sc = new Scanner(System.in);
             int c   = sc.nextInt();
             switch (c){
